@@ -1,14 +1,11 @@
 from fastapi import FastAPI,File, UploadFile
 import uvicorn
-from datetime import datetime
 import csv
 from solider import Solider
+from rooms import Rooms
 
 
 app = FastAPI()
-@app.get("/")
-def get_root():
-    return {"ts": datetime.now()}
 
 @app.post("/assignWithCsv")
 def get_file(file: UploadFile = File()):
@@ -21,5 +18,14 @@ def get_file(file: UploadFile = File()):
     rows = [row for row in reader]
     columns = rows[0]
     rows = rows[1:]
-    data = Solider.add_solider(Solider.to_dict(rows))
+    data = Solider(rows)
+    Solider.add_solider(data)
+    new = Solider.sorted_data()
+    dormA =Rooms.to_buildings(new)
+    dormB =Rooms.to_buildings(new)
+    return {"assigned":(len(dormA)+len(dormB)),"waitinglist":[4553] }
+
+if __name__ == "__main__":
+    uvicorn.run(app)
+
 

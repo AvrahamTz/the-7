@@ -23,6 +23,10 @@ class Solider:
     'kilometers': self.how_far,
     "room": self.status 
     }
+    def sorted_data(self):
+        for i in self.list_of_soliders:
+            self.list_of_soliders.sort(self.how_far)
+        return self.list_of_soliders    
 
 
 
