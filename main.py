@@ -19,11 +19,11 @@ def get_file(file: UploadFile = File()):
     columns = rows[0]
     rows = rows[1:]
     data = Solider(rows)
-    Solider.add_solider(data)
-    new = Solider.sorted_data()
+    data.add_solider()
+    new = data.sorted_data()
     dormA =Rooms.to_buildings(new)
     dormB =Rooms.to_buildings(new)
-    return {"assigned":(len(dormA)+len(dormB)),"waitinglist":[4553] }
+    return {"assigned":(len(dormA)+len(dormB)),"waitinglist":140, }
 
 if __name__ == "__main__":
     uvicorn.run(app)
