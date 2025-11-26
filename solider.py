@@ -1,6 +1,3 @@
-import sqlite3
-import csv
-
 class Solider:
     def __init__(self,id,first_name,last_name,gender,city,how_far=int):
         self.id = id
@@ -26,7 +23,7 @@ class Solider:
     def sorted_data(self):
         for i in self.list_of_soliders:
             self.list_of_soliders.sort(self.how_far)
-        return self.list_of_soliders    
+        return self.list_of_soliders
 
 
 

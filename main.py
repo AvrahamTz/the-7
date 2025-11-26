@@ -6,7 +6,6 @@ from rooms import Rooms
 
 
 app = FastAPI()
-
 @app.post("/assignWithCsv")
 def get_file(file: UploadFile = File()):
     if not "csv" in file.content_type:
